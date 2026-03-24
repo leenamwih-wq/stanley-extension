@@ -1,0 +1,48 @@
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
+body { width: 420px; background: #0f0f1a; color: #e8e8f0; font-size: 13px; }
+.container { padding: 16px; display: flex; flex-direction: column; gap: 12px; }
+.header { text-align: center; padding: 10px 0 4px; }
+.logo { font-size: 22px; font-weight: 800; background: linear-gradient(135deg, #7c6ff7, #a78bfa, #60a5fa); -webkit-background-clip: text; -webkit-text-fill-color: transparent; letter-spacing: -0.5px; }
+.tagline { font-size: 11px; color: #8888aa; margin-top: 2px; }
+.card { background: #1a1a2e; border: 1px solid #2a2a45; border-radius: 12px; padding: 14px; display: flex; flex-direction: column; gap: 8px; }
+label { font-size: 12px; color: #9999bb; font-weight: 500; }
+textarea { background: #12121f; border: 1px solid #2a2a45; border-radius: 8px; color: #e8e8f0; padding: 10px; font-size: 12px; resize: vertical; min-height: 80px; line-height: 1.5; outline: none; transition: border-color 0.2s; width: 100%; }
+textarea:focus { border-color: #7c6ff7; }
+input[type="text"], input[type="password"] { background: #12121f; border: 1px solid #2a2a45; border-radius: 8px; color: #e8e8f0; padding: 9px 10px; font-size: 12px; outline: none; width: 100%; transition: border-color 0.2s; }
+input[type="text"]:focus, input[type="password"]:focus { border-color: #7c6ff7; }
+select { background: #12121f; border: 1px solid #2a2a45; border-radius: 8px; color: #e8e8f0; padding: 9px 10px; font-size: 12px; outline: none; cursor: pointer; width: 100%; }
+.btn { padding: 9px 14px; border-radius: 8px; border: none; cursor: pointer; font-size: 12px; font-weight: 600; transition: all 0.2s; width: 100%; }
+.btn-primary { background: linear-gradient(135deg, #7c6ff7, #60a5fa); color: white; }
+.btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
+.btn-primary:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+.btn-secondary { background: #2a2a45; color: #c0c0e0; border: 1px solid #3a3a60; }
+.btn-secondary:hover { background: #33335a; }
+.btn-ghost { background: transparent; color: #7c6ff7; border: 1px solid #3a3a60; }
+.btn-ghost:hover { background: #1a1a30; }
+.btn.small { font-size: 11px; padding: 6px 10px; width: auto; }
+.tabs { display: flex; gap: 4px; background: #1a1a2e; border-radius: 10px; padding: 4px; border: 1px solid #2a2a45; }
+.tab { flex: 1; padding: 7px 4px; border: none; border-radius: 7px; background: transparent; color: #8888aa; cursor: pointer; font-size: 11px; font-weight: 600; transition: all 0.2s; }
+.tab.active { background: linear-gradient(135deg, #7c6ff7, #60a5fa); color: white; }
+.tab:hover:not(.active) { background: #2a2a45; color: #c0c0e0; }
+.tab-content { display: none; flex-direction: column; gap: 10px; }
+.tab-content.active { display: flex; }
+.output-box { background: #12121f; border: 1px solid #7c6ff740; border-radius: 12px; padding: 14px; display: flex; flex-direction: column; gap: 10px; }
+.output-label { font-size: 11px; color: #7c6ff7; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+.output-text { font-size: 12px; line-height: 1.65; color: #d8d8f0; white-space: pre-wrap; max-height: 220px; overflow-y: auto; }
+.output-text::-webkit-scrollbar { width: 4px; }
+.output-text::-webkit-scrollbar-thumb { background: #3a3a60; border-radius: 4px; }
+.output-actions { display: flex; gap: 8px; }
+.output-actions .btn { width: auto; }
+.analytics-tracker { gap: 10px; }
+.analytics-label { font-size: 13px; font-weight: 700; color: #a78bfa; }
+.analytics-row { display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: #9999bb; padding: 6px 0; border-bottom: 1px solid #2a2a45; }
+.analytics-row span:last-child { font-weight: 700; color: #7c6ff7; font-size: 16px; }
+.loading { display: flex; align-items: center; justify-content: center; gap: 10px; color: #8888aa; font-size: 12px; padding: 8px; }
+.spinner { width: 18px; height: 18px; border: 2px solid #2a2a45; border-top-color: #7c6ff7; border-radius: 50%; animation: spin 0.8s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.small-note { font-size: 10px; color: #666688; }
+.api-links { font-size: 11px; color: #7c6ff7; }
+.api-links a { color: #7c6ff7; text-decoration: none; }
+.api-links a:hover { text-decoration: underline; }
+.footer { display: flex; justify-content: center; padding-top: 4px; }
+.hidden { display: none !important; }

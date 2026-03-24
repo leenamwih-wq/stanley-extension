@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Stanley</title>
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <div class="logo">⚡ Stanley</div>
+      <div class="tagline">Your LinkedIn AI Thought Partner</div>
+    </div>
+
+    <div id="api-setup" class="card hidden">
+      <h3>🔑 API Setup</h3>
+      <label>Choose your AI provider:</label>
+      <select id="api-provider">
+        <option value="openai">OpenAI (GPT-4o)</option>
+        <option value="anthropic">Anthropic (Claude)</option>
+        <option value="gemini">Google Gemini (has free tier)</option>
+      </select>
+      <label>Your API Key:</label>
+      <input type="password" id="api-key-input" placeholder="Paste your API key here..." />
+      <button id="save-api-key" class="btn btn-primary">Save Settings</button>
+      <div class="api-links">
+        <a href="https://platform.openai.com/api-keys" target="_blank">Get OpenAI key</a> ·
+        <a href="https://console.anthropic.com/" target="_blank">Get Anthropic key</a> ·
+        <a href="https://aistudio.google.com/app/apikey" target="_blank">Get Gemini key (free)</a>
+      </div>
+      <p class="small-note">🔒 Your key is stored locally on your device only. Never sent anywhere except directly to your chosen AI provider.</p>
+    </div>
+
+    <div class="tabs">
+      <button class="tab active" data-tab="draft">✏️ Draft</button>
+      <button class="tab" data-tab="ideas">💡 Ideas</button>
+      <button class="tab" data-tab="remix">🔄 Remix</button>
+      <button class="tab" data-tab="analytics">📊 Analytics</button>
+    </div>
+
+    <div id="tab-draft" class="tab-content active">
+      <div class="card">
+        <label>What's on your mind? Drop a rough idea or brain dump:</label>
+        <textarea id="draft-input" placeholder="e.g. I just had a realization about how most people overcomplicate their morning routines..."></textarea>
+        <label>Tone / Style:</label>
+        <select id="draft-tone">
+          <option value="professional">Professional</option>
+          <option value="conversational">Conversational</option>
+          <option value="storytelling">Storytelling</option>
+          <option value="bold">Bold & Opinionated</option>
+          <option value="educational">Educational</option>
+        </select>
+        <label>Format:</label>
+        <select id="draft-format">
+          <option value="short">Short (under 150 words)</option>
+          <option value="medium">Medium (150–300 words)</option>
+          <option value="long">Long-form (300+ words)</option>
+          <option value="list">List / Bullet style</option>
+          <option value="hook">Hook + Story + CTA</option>
+        </select>
+        <button id="btn-draft" class="btn btn-primary">✨ Generate Post</button>
+      </div>
+      <div id="draft-output" class="output-box hidden">
+        <div class="output-label">Your polished post:</div>
+        <div id="draft-result" class="output-text"></div>
+        <div class="output-actions">
+          <button id="copy-draft" class="btn btn-secondary">📋 Copy</button>
+          <button id="regenerate-draft" class="btn btn-ghost">🔁 Regenerate</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="tab-ideas" class="tab-content">
+      <div class="card">
+        <label>What's your niche or industry?</label>
+        <input type="text" id="ideas-niche" placeholder="e.g. SaaS founder, marketing, fitness coach..." />
+        <label>What topics or themes are you known for?</label>
+        <textarea id="ideas-themes" placeholder="e.g. productivity, team leadership, B2B sales..."></textarea>
+        <label>How many ideas?</label>
+        <select id="ideas-count">
+          <option value="5">5 ideas</option>
+          <option value="10" selected>10 ideas</option>
+          <option value="15">15 ideas</option>
+        </select>
+        <button id="btn-ideas" class="btn btn-primary">💡 Generate Ideas</button>
+      </div>
+      <div id="ideas-output" class="output-box hidden">
+        <div class="output-label">Your content ideas:</div>
+        <div id="ideas-result" class="output-text"></div>
+        <div class="output-actions">
+          <button id="copy-ideas" class="btn btn-secondary">📋 Copy All</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="tab-remix" class="tab-content">
+      <div class="card">
+        <label>Paste your existing post or draft:</label>
+        <textarea id="remix-input" placeholder="Paste your post here..."></textarea>
+        <label>What do you want to do with it?</label>
+        <select id="remix-action">
+          <option value="hook">Rewrite with a stronger hook</option>
+          <option value="shorter">Make it shorter & punchier</option>
+          <option value="longer">Expand with more detail</option>
+          <option value="story">Turn it into a story</option>
+          <option value="list">Reformat as a list</option>
+          <option value="cta">Add a strong CTA</option>
+          <option value="hashtags">Suggest hashtags</option>
+          <option value="different_tone">Rewrite in a different tone</option>
+        </select>
+        <button id="btn-remix" class="btn btn-primary">🔄 Remix Post</button>
+      </div>
+      <div id="remix-output" class="output-box hidden">
+        <div class="output-label">Remixed version:</div>
+        <div id="remix-result" class="output-text"></div>
+        <div class="output-actions">
+          <button id="copy-remix" class="btn btn-secondary">📋 Copy</button>
+          <button id="regenerate-remix" class="btn btn-ghost">🔁 Try Again</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="tab-analytics" class="tab-content">
+      <div class="card">
+        <label>Paste your recent post + its performance (optional):</label>
+        <textarea id="analytics-input" placeholder="e.g. Post: 'Here are 5 lessons from my first year...' | Likes: 142, Comments: 38, Reposts: 12"></textarea>
+        <button id="btn-analytics" class="btn btn-primary">📊 Analyze & Get Tips</button>
+      </div>
+      <div class="card analytics-tracker">
+        <div class="analytics-label">📈 Post Tracker</div>
+        <div class="analytics-row">
+          <span>Posts drafted this week</span>
+          <span id="stat-posts">0</span>
+        </div>
+        <div class="analytics-row">
+          <span>Posts drafted this month</span>
+          <span id="stat-month">0</span>
+        </div>
+        <div class="analytics-row">
+          <span>All-time posts drafted</span>
+          <span id="stat-total">0</span>
+        </div>
+        <button id="log-post" class="btn btn-secondary">+ Log a Post</button>
+      </div>
+      <div id="analytics-output" class="output-box hidden">
+        <div class="output-label">AI Performance Insights:</div>
+        <div id="analytics-result" class="output-text"></div>
+        <div class="output-actions">
+          <button id="copy-analytics" class="btn btn-secondary">📋 Copy</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="loading" class="loading hidden">
+      <div class="spinner"></div>
+      <span>Stanley is thinking...</span>
+    </div>
+
+    <div class="footer">
+      <button id="settings-btn" class="btn btn-ghost small">⚙️ API Settings</button>
+    </div>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>

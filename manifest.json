@@ -1,0 +1,16 @@
+{
+  "manifest_version": 3,
+  "name": "Stanley - LinkedIn AI Assistant",
+  "version": "1.0",
+  "description": "Your AI thought partner for LinkedIn. Draft posts, get ideas, and grow your presence.",
+  "permissions": ["storage", "activeTab"],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "128": "icons/icon128.png"
+    }
+  },
+  "background": {
+    "service_worker": "background.js"
+  }
+}
